@@ -2,6 +2,7 @@
   <dictionary name="muham">
     <words>
       <w>fileprovider</w>
+      <w>firestore</w>
       <w>koin</w>
       <w>kosan</w>
       <w>koskosanadmin</w>
