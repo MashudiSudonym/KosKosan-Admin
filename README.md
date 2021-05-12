@@ -5,7 +5,7 @@
 
 * Download ```google-services.json``` from firebase
 
-* create file ```KosKosan/app/src/release/res/values/google_maps_api.xml``` and ```KosKosan/app/src/debug/res/values/google_maps_api.xml```
+* create file ```KosKosanAdmin/app/src/release/res/values/google_maps_api.xml``` and ```KosKosanAdmin/app/src/debug/res/values/google_maps_api.xml```
 
 * write this code into those file
 
