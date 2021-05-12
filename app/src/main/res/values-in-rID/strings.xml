@@ -28,14 +28,14 @@
     <string name="alert_storage_permission_granted">Ijin Akses Penyimpanan Diterima</string>
     <string name="alert_storage_permission_denied">Ijin Akses Penyimpanan Ditolak</string>
     <string name="alert_photo_null">Foto profilmu masih kosong</string>
-    <string name="profile">Profil</string>
+    <string name="title_profile">Profil</string>
     <string name="data_error_null">Ada yang salah!!, ini null</string>
     <string name="image_requirement_size_description">Kami sangat menyarankan menggunakan gambar yang diambil dari galeri dan berukuran kurang dari 300 Mb.</string>
     <string name="about">Tentang aplikasi ini</string>
     <string name="about_description">KosKosan merupakan aplikasi untuk membantu mencari lokasi kos terdekat dari titik lokasi anda.</string>
     <string name="edit_profile">Edit Profil</string>
     <string name="log_out">Keluar</string>
-    <string name="transaction">Transaksi</string>
+    <string name="title_transaction">Transaksi</string>
     <string name="alert_cancel_edit_profile">Batal mengubah profil ?</string>
     <string name="location_name">Nama Lokasi</string>
     <string name="location_address">Alamat Lokasi</string>
@@ -74,4 +74,5 @@
     <string name="order_status">"Status Pesanan : "</string>
     <string name="customer_data">"Data Pemesan : "</string>
     <string name="location_data">"Data Lokasi : "</string>
+    <string name="title_location">Lokasi</string>
 </resources>

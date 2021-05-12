@@ -1,4 +1,4 @@
-package c.m.koskosanadmin.ui.notifications
+package c.m.koskosanadmin.ui.location
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import c.m.koskosanadmin.R
 
-class NotificationsFragment : Fragment() {
+class LocationFragment : Fragment() {
 
-    private lateinit var notificationsViewModel: NotificationsViewModel
+    private lateinit var locationViewModel: LocationViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        notificationsViewModel =
-                ViewModelProvider(this).get(NotificationsViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_notifications, container, false)
-        val textView: TextView = root.findViewById(R.id.text_notifications)
-        notificationsViewModel.text.observe(viewLifecycleOwner, Observer {
+        locationViewModel =
+                ViewModelProvider(this).get(LocationViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_location, container, false)
+        val textView: TextView = root.findViewById(R.id.text_dashboard)
+        locationViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root
