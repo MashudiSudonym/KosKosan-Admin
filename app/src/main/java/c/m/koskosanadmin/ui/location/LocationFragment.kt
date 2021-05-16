@@ -9,23 +9,24 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import c.m.koskosanadmin.R
+import c.m.koskosanadmin.databinding.FragmentLocationBinding
 
 class LocationFragment : Fragment() {
 
     private lateinit var locationViewModel: LocationViewModel
+    private var _binding: FragmentLocationBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
-        locationViewModel =
-                ViewModelProvider(this).get(LocationViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_location, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
-        locationViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+    ): View {
+        _binding = FragmentLocationBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
     }
 }
