@@ -9,23 +9,24 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import c.m.koskosanadmin.R
+import c.m.koskosanadmin.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {
 
     private lateinit var profileViewModel: ProfileViewModel
+    private var _binding: FragmentProfileBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
-        profileViewModel =
-                ViewModelProvider(this).get(ProfileViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_profile, container, false)
-        val textView: TextView = root.findViewById(R.id.text_notifications)
-        profileViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+    ): View {
+        _binding = FragmentProfileBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
     }
 }
