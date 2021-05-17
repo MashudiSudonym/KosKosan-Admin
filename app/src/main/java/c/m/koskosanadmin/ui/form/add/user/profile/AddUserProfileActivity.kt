@@ -184,12 +184,13 @@ class AddUserProfileActivity : AppCompatActivity() {
             addUserProfileBinding.edtAddress.text.toString(),
             addUserProfileBinding.edtEmail.text.toString(),
         )
+
         addUserProfileViewModel.postUserProfileData().observe(this, { response ->
             if (response != null) when (response) {
                 is ResponseState.Error -> {
                     response.message?.let {
                         hideSendingAnimation()
-                        layout.snackBarWarningLong(it)
+                        layout.snackBarWarningLong(getString(R.string.error_upload_message) + it)
                     }
                 }
                 is ResponseState.Success -> {
