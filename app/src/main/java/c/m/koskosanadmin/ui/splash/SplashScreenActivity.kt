@@ -24,7 +24,7 @@ class SplashScreenActivity : AppCompatActivity() {
         setContentView(splashScreenBinding.root)
 
         // observe return value of the data
-        splashScreenViewModel.isUserAuthenticated().observe(this, { userAuth ->
+        splashScreenViewModel.isUserAuthenticated().observe(this, { isUserAuth ->
             val mainActivityIntent = Intent(this, MainActivity::class.java)
             val loginActivityIntent = Intent(this, LoginActivity::class.java)
 
@@ -35,7 +35,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
                 // if userAuth is false open Login Activity
                 // else open Main Activity
-                if (!userAuth) {
+                if (!isUserAuth) {
                     finish()
                     startActivity(loginActivityIntent)
                 } else {
