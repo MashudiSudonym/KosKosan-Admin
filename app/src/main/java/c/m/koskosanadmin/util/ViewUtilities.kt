@@ -1,7 +1,13 @@
 package c.m.koskosanadmin.util
 
+import android.app.Activity
+import android.content.Context
 import android.graphics.Color
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
+import c.m.koskosanadmin.R
+import coil.load
 import com.google.android.material.snackbar.Snackbar
 
 object ViewUtilities {
@@ -56,5 +62,17 @@ object ViewUtilities {
         title: String
     ) {
         Snackbar.make(this, title, Snackbar.LENGTH_INDEFINITE).show()
+    }
+
+    fun loadImageWithCoil(imageView: ImageView, imageUrl: String) {
+        imageView.load(imageUrl) {
+            placeholder(R.drawable.ic_icon)
+            error(R.drawable.ic_broken_image)
+        }
+    }
+
+    fun Context.hideKeyboard(view: View) {
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }
