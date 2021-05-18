@@ -76,5 +76,5 @@
     <string name="customer_data">Customer Data :</string>
     <string name="location_data">"Location Data : "</string>
     <string name="title_location">Location</string>
-    <string name="error_upload_message">\"Your image size must be lower than 6 Mb or \"</string>
+    <string name="error_upload_message">"Your image size must be lower than 6 Mb or "</string>
 </resources>
