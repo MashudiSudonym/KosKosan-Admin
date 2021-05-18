@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_transaction"
-        android:name="c.m.koskosanadmin.ui.transaction.TransactionFragment"
+        android:name="c.m.koskosanadmin.ui.transaction.list.TransactionFragment"
         android:label="@string/title_transaction"
         tools:layout="@layout/fragment_transaction" />
 
