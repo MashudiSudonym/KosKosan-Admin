@@ -31,7 +31,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KosKosanAdmin">
-        <activity android:name=".ui.form.add.user.profile.AddUserProfileActivity"></activity>
+        <activity android:name=".ui.about.AboutActivity"></activity>
+        <activity android:name=".ui.form.add.user.profile.AddUserProfileActivity" />
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.splash.SplashScreenActivity">
             <intent-filter>

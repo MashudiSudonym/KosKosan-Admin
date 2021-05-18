@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import c.m.koskosanadmin.R
 import c.m.koskosanadmin.data.model.UserResponse
 import c.m.koskosanadmin.databinding.FragmentProfileBinding
+import c.m.koskosanadmin.ui.about.AboutActivity
 import c.m.koskosanadmin.ui.login.LoginActivity
 import c.m.koskosanadmin.util.ViewUtilities.gone
 import c.m.koskosanadmin.util.ViewUtilities.invisible
@@ -54,8 +55,8 @@ class ProfileFragment : Fragment() {
 
         // button for open about this application activity
         binding.btnInfoApplication.setOnClickListener {
-//            val aboutActivityIntent = Intent(requireContext(), AboutActivity::class.java)
-//            startActivity(aboutActivityIntent)
+            val aboutActivityIntent = Intent(requireActivity(), AboutActivity::class.java)
+            startActivity(aboutActivityIntent)
         }
     }
 
