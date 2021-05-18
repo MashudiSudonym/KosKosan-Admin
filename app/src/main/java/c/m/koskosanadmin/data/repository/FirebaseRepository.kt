@@ -3,6 +3,7 @@ package c.m.koskosanadmin.data.repository
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import c.m.koskosanadmin.data.model.LocationResponse
 import c.m.koskosanadmin.data.model.OrderResponse
 import c.m.koskosanadmin.data.model.UserResponse
 import c.m.koskosanadmin.vo.ResponseState
@@ -156,7 +157,27 @@ class FirebaseRepository {
         return userProfileData
     }
 
-    // TODO: get all locations by owner uid
+    // get all locations by owner uid
+    fun readLocationByOwnerUid(ownerUID: String): LiveData<ResponseState<List<LocationResponse>>> {
+        val locations: MutableLiveData<ResponseState<List<LocationResponse>>> = MutableLiveData()
+
+        // loading state
+        locations.value = ResponseState.Loading(null)
+
+        locationCollection.whereEqualTo("ownerUID", ownerUID).get()
+            .addOnSuccessListener { snapshot ->
+                val locationSnapshot = snapshot?.toObjects(LocationResponse::class.java)
+
+                // success state
+                locations.value = ResponseState.Success(locationSnapshot)
+            }
+            .addOnFailureListener { exception ->
+                // error state
+                locations.value = ResponseState.Error(exception.localizedMessage, null)
+            }
+
+        return locations
+    }
 
     // TODO: get location detail by location uid
 

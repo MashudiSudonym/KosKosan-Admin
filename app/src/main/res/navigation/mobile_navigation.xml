@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_location"
-        android:name="c.m.koskosanadmin.ui.location.LocationFragment"
+        android:name="c.m.koskosanadmin.ui.location.list.LocationFragment"
         android:label="@string/title_location"
         tools:layout="@layout/fragment_location" />
 
