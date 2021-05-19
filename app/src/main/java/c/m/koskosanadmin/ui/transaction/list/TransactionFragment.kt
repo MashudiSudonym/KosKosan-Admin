@@ -1,5 +1,6 @@
 package c.m.koskosanadmin.ui.transaction.list
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import c.m.koskosanadmin.R
 import c.m.koskosanadmin.databinding.FragmentTransactionBinding
+import c.m.koskosanadmin.ui.transaction.detail.DetailTransactionActivity
+import c.m.koskosanadmin.util.Constants.UID
 import c.m.koskosanadmin.util.ViewUtilities.gone
 import c.m.koskosanadmin.util.ViewUtilities.invisible
 import c.m.koskosanadmin.util.ViewUtilities.visible
@@ -45,12 +48,12 @@ class TransactionFragment : Fragment() {
 
         // initialize recyclerview adapter
         transactionAdapter = TransactionAdapter { orderResponse ->
-//            val detailTransactionActivityIntent =
-//                Intent(requireActivity(), DetailTransactionActivity::class.java).apply {
-//                    putExtra(UID, orderResponse.uid)
-//                }
-//
-//            startActivity(detailTransactionActivityIntent)
+            val detailTransactionActivityIntent =
+                Intent(requireActivity(), DetailTransactionActivity::class.java).apply {
+                    putExtra(UID, orderResponse.uid)
+                }
+
+            startActivity(detailTransactionActivityIntent)
         }
 
         // initialize get transaction data

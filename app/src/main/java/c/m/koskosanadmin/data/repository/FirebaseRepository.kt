@@ -234,5 +234,23 @@ class FirebaseRepository {
         return orders
     }
 
-    // TODO : update order status
+    fun updateOrderStatusByOrderUID(
+        orderUID: String,
+        orderStatus: Int
+    ): LiveData<ResponseState<OrderResponse>> {
+        val orders: MutableLiveData<ResponseState<OrderResponse>> = MutableLiveData()
+
+        // show loading state
+        orders.value = ResponseState.Loading(null)
+
+        orderCollection.document(orderUID).update("orderStatus", orderStatus)
+            .addOnSuccessListener {
+                orders.value = ResponseState.Success(null)
+            }
+            .addOnFailureListener { exception ->
+                // error state
+                orders.value = ResponseState.Error(exception.localizedMessage, null)
+            }
+        return orders
+    }
 }
