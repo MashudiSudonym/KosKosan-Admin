@@ -142,7 +142,6 @@ class FirebaseRepository {
 
                 if (users != null) {
                     users.forEach { data ->
-
                         userProfileData.value = ResponseState.Success(data)
                     }
                 } else {
@@ -180,6 +179,8 @@ class FirebaseRepository {
     }
 
     // TODO: get location detail by location uid
+
+    // TODO: update location data by location uid
 
     // get user order by location owner uid
     fun readOrderByLocationOwnerUid(locationOwnerUID: String): LiveData<ResponseState<List<OrderResponse>>> {

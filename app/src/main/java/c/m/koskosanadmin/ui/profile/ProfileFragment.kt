@@ -10,6 +10,7 @@ import c.m.koskosanadmin.R
 import c.m.koskosanadmin.data.model.UserResponse
 import c.m.koskosanadmin.databinding.FragmentProfileBinding
 import c.m.koskosanadmin.ui.about.AboutActivity
+import c.m.koskosanadmin.ui.form.update.user.profile.UpdateUserProfileActivity
 import c.m.koskosanadmin.ui.login.LoginActivity
 import c.m.koskosanadmin.util.ViewUtilities.gone
 import c.m.koskosanadmin.util.ViewUtilities.invisible
@@ -117,9 +118,10 @@ class ProfileFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.edit_profile -> {
-//                val intentUpdateUserProfileActivity =
-//                    Intent(requireContext(), UpdateUserProfileActivity::class.java)
-//                startActivity(intentUpdateUserProfileActivity)
+                val updateUserProfileActivityIntent =
+                    Intent(requireContext(), UpdateUserProfileActivity::class.java)
+
+                startActivity(updateUserProfileActivityIntent)
                 true
             }
             R.id.log_out -> {
