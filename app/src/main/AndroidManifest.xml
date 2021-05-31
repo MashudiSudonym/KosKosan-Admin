@@ -31,7 +31,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KosKosanAdmin">
-        <activity android:name=".ui.form.update.user.profile.UpdateUserProfileActivity"></activity>
+        <activity android:name=".ui.location.detail.DetailLocationActivity"></activity>
+        <activity android:name=".ui.form.update.user.profile.UpdateUserProfileActivity" />
         <activity android:name=".ui.transaction.detail.DetailTransactionActivity" />
         <activity android:name=".ui.about.AboutActivity" />
         <activity android:name=".ui.form.add.user.profile.AddUserProfileActivity" />

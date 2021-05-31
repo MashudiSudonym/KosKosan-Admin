@@ -140,7 +140,7 @@ class FirebaseRepository {
             .addOnSuccessListener { snapshot ->
                 val users = snapshot?.toObjects(UserResponse::class.java)
 
-                if (users != null) {
+                if (!users.isNullOrEmpty()) {
                     users.forEach { data ->
                         userProfileData.value = ResponseState.Success(data)
                     }
@@ -167,8 +167,13 @@ class FirebaseRepository {
             .addOnSuccessListener { snapshot ->
                 val locationSnapshot = snapshot?.toObjects(LocationResponse::class.java)
 
-                // success state
-                locations.value = ResponseState.Success(locationSnapshot)
+                if (!locationSnapshot.isNullOrEmpty()) {
+                    // success state
+                    locations.value = ResponseState.Success(locationSnapshot)
+                } else {
+                    // error state
+                    locations.value = ResponseState.Error("No Data", null)
+                }
             }
             .addOnFailureListener { exception ->
                 // error state
@@ -178,7 +183,36 @@ class FirebaseRepository {
         return locations
     }
 
-    // TODO: get location detail by location uid
+    // TODO: create location
+
+    // get location detail by location uid
+    fun readLocationDetailByLocationUid(locationUID: String): LiveData<ResponseState<LocationResponse>> {
+        val location: MutableLiveData<ResponseState<LocationResponse>> = MutableLiveData()
+
+        // show loading state
+        location.value = ResponseState.Loading(null)
+
+        locationCollection.whereEqualTo("uid", locationUID).get()
+            .addOnSuccessListener { snapshot ->
+                val locationSnapshot = snapshot?.toObjects(LocationResponse::class.java)
+
+                if (!locationSnapshot.isNullOrEmpty()) // error state
+                {
+                    locationSnapshot.forEach { data ->
+                        // success state
+                        location.value = ResponseState.Success(data)
+                    }
+                } else {
+                    // error state
+                    location.value = ResponseState.Error("No Data", null)
+                }
+            }.addOnFailureListener { exception ->
+                // error state
+                location.value = ResponseState.Error(exception.localizedMessage, null)
+            }
+
+        return location
+    }
 
     // TODO: update location data by location uid
 
@@ -194,8 +228,13 @@ class FirebaseRepository {
             .addOnSuccessListener { snapshot ->
                 val orderSnapshot = snapshot?.toObjects(OrderResponse::class.java)
 
-                // success state
-                orders.value = ResponseState.Success(orderSnapshot)
+                if (!orderSnapshot.isNullOrEmpty()) {
+                    // success state
+                    orders.value = ResponseState.Success(orderSnapshot)
+                } else {
+                    // error state
+                    orders.value = ResponseState.Error("No Data", null)
+                }
             }
             .addOnFailureListener { exception ->
                 // error state
@@ -207,51 +246,51 @@ class FirebaseRepository {
 
     // get user order details by order uid
     fun readOrderDetailByOrderUid(orderUID: String): LiveData<ResponseState<OrderResponse>> {
-        val orders: MutableLiveData<ResponseState<OrderResponse>> = MutableLiveData()
+        val order: MutableLiveData<ResponseState<OrderResponse>> = MutableLiveData()
 
         // show loading state
-        orders.value = ResponseState.Loading(null)
+        order.value = ResponseState.Loading(null)
 
         orderCollection.whereEqualTo("uid", orderUID).get()
             .addOnSuccessListener { snapshot ->
                 val orderSnapshot = snapshot?.toObjects(OrderResponse::class.java)
 
                 // success state
-                if (orderSnapshot != null) {
+                if (!orderSnapshot.isNullOrEmpty()) {
                     orderSnapshot.forEach { data ->
                         // success state
-                        orders.value = ResponseState.Success(data)
+                        order.value = ResponseState.Success(data)
                     }
                 } else {
                     // error state
-                    orders.value = ResponseState.Error("No data", null)
+                    order.value = ResponseState.Error("No data", null)
                 }
             }
             .addOnFailureListener { exception ->
                 // error state
-                orders.value = ResponseState.Error(exception.localizedMessage, null)
+                order.value = ResponseState.Error(exception.localizedMessage, null)
             }
 
-        return orders
+        return order
     }
 
     fun updateOrderStatusByOrderUID(
         orderUID: String,
         orderStatus: Int
     ): LiveData<ResponseState<OrderResponse>> {
-        val orders: MutableLiveData<ResponseState<OrderResponse>> = MutableLiveData()
+        val order: MutableLiveData<ResponseState<OrderResponse>> = MutableLiveData()
 
         // show loading state
-        orders.value = ResponseState.Loading(null)
+        order.value = ResponseState.Loading(null)
 
         orderCollection.document(orderUID).update("orderStatus", orderStatus)
             .addOnSuccessListener {
-                orders.value = ResponseState.Success(null)
+                order.value = ResponseState.Success(null)
             }
             .addOnFailureListener { exception ->
                 // error state
-                orders.value = ResponseState.Error(exception.localizedMessage, null)
+                order.value = ResponseState.Error(exception.localizedMessage, null)
             }
-        return orders
+        return order
     }
 }

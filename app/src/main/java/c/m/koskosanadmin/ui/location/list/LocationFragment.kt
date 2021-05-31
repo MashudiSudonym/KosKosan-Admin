@@ -1,5 +1,6 @@
 package c.m.koskosanadmin.ui.location.list
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import c.m.koskosanadmin.R
 import c.m.koskosanadmin.databinding.FragmentLocationBinding
+import c.m.koskosanadmin.ui.location.detail.DetailLocationActivity
+import c.m.koskosanadmin.util.Constants.UID
 import c.m.koskosanadmin.util.ViewUtilities.gone
 import c.m.koskosanadmin.util.ViewUtilities.invisible
 import c.m.koskosanadmin.util.ViewUtilities.snackBarBasicShort
@@ -45,7 +48,14 @@ class LocationFragment : Fragment() {
         }
 
         // initialize recyclerview adapter
-        locationAdapter = LocationAdapter { locationResponse -> }
+        locationAdapter = LocationAdapter { locationResponse ->
+            val detailLocationActivityIntent =
+                Intent(requireActivity(), DetailLocationActivity::class.java).apply {
+                    putExtra(UID, locationResponse.uid)
+                }
+
+            startActivity(detailLocationActivityIntent)
+        }
 
         // initialize get location data
         initializeGetLocationData()

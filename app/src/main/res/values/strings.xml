@@ -78,4 +78,5 @@
     <string name="title_location">Location</string>
     <string name="error_upload_message">"Your image size must be lower than 6 Mb or "</string>
     <string name="change_order_status">Change Order Status</string>
+    <string name="mix">Mix</string>
 </resources>
