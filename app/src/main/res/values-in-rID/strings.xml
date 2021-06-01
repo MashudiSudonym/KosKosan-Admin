@@ -78,4 +78,5 @@
     <string name="error_upload_message">"Ukuran gambar anda harus lebih rendah dari 6 Mb atau "</string>
     <string name="change_order_status">Ubah Status Order</string>
     <string name="mix">Campur</string>
+    <string name="edit_location">Ubah Lokasi</string>
 </resources>

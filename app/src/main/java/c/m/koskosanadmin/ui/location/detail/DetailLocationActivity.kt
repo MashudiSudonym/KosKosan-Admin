@@ -1,8 +1,12 @@
 package c.m.koskosanadmin.ui.location.detail
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import c.m.koskosanadmin.R
 import c.m.koskosanadmin.databinding.ActivityDetailLocationBinding
@@ -31,6 +35,7 @@ class DetailLocationActivity : AppCompatActivity() {
     private lateinit var detailLocationBinding: ActivityDetailLocationBinding
     private lateinit var layout: View
     private var uid: String? = ""
+    private lateinit var shareIntent: Intent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,6 +100,16 @@ class DetailLocationActivity : AppCompatActivity() {
                                     TYPE_OF_OTHER -> getString(R.string.call_admin_contact)
                                     else -> getString(R.string.call_admin_contact)
                                 }
+
+                            // data for shared item
+                            shareIntent = Intent().apply {
+                                action = Intent.ACTION_SEND
+                                putExtra(
+                                    Intent.EXTRA_TEXT,
+                                    "${getString(R.string.share_content_base)} ${data.name} ${data.address} ${data.phone} ${data.googlePlace}"
+                                )
+                                type = "text/plain"
+                            }
 
                             // show image data
                             val slidePhoto = ArrayList<SlideModel>()
@@ -178,6 +193,26 @@ class DetailLocationActivity : AppCompatActivity() {
         detailLocationBinding.detailLayout.invisible()
         detailLocationBinding.animLoading.visible()
         detailLocationBinding.animError.gone()
+    }
+
+    // initialize menu option
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.detail_location_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.edit_location -> {
+                true
+            }
+            R.id.share -> {
+                startActivity(shareIntent)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     // activate back button arrow
