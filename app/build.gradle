@@ -110,21 +110,21 @@ dependencies {
     // Log
     implementation 'com.jakewharton.timber:timber:4.7.1'
     // Koin for Kotlin
-    implementation "org.koin:koin-core:$koin_version"
+    implementation "io.insert-koin:koin-core:$koin_version"
     // Koin for Android
-    implementation "org.koin:koin-android:$koin_version"
+    implementation "io.insert-koin:koin-android:$koin_version"
     // Koin AndroidX Scope features
-    implementation "org.koin:koin-androidx-scope:$koin_version"
+    implementation "io.insert-koin:koin-androidx-scope:$koin_version"
     // Koin AndroidX ViewModel features
-    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+    implementation "io.insert-koin:koin-androidx-viewmodel:$koin_version"
     // Koin AndroidX Fragment features
-    implementation "org.koin:koin-androidx-fragment:$koin_version"
+    implementation "io.insert-koin:koin-androidx-fragment:$koin_version"
     // Koin AndroidX WorkManager
-    implementation "org.koin:koin-androidx-workmanager:$koin_version"
+    implementation "io.insert-koin:koin-androidx-workmanager:$koin_version"
     // Koin AndroidX Experimental features
-    implementation "org.koin:koin-androidx-ext:$koin_version"
+    implementation "io.insert-koin:koin-androidx-ext:$koin_version"
     // Koin for Unit tests
-    testImplementation "org.koin:koin-test:$koin_version"
+    testImplementation "io.insert-koin:koin-test:$koin_version"
     // test
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.mockito:mockito-core:3.4.0'
