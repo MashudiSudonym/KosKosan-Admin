@@ -48,7 +48,7 @@ class FirebaseRepository {
 
     // post user profile data to firestore and user profile image to storage
     fun createUserProfileData(
-        uid: String,
+        userUID: String,
         name: String,
         imageProfilePath: Uri?,
         phoneNumber: String,
@@ -56,7 +56,7 @@ class FirebaseRepository {
         email: String,
     ): LiveData<ResponseState<Double>> {
         val progressUploadingData: MutableLiveData<ResponseState<Double>> = MutableLiveData()
-        val imageReference: StorageReference = userProfileStorageReference.child("$uid/profile")
+        val imageReference: StorageReference = userProfileStorageReference.child("$userUID/profile")
         val progressDone = 100.0
 
         if (imageProfilePath != null) {
@@ -64,7 +64,7 @@ class FirebaseRepository {
                 .addOnSuccessListener {
                     it.storage.downloadUrl.addOnSuccessListener { uri ->
                         val mapUserResponseData = UserResponse(
-                            uid,
+                            userUID,
                             name,
                             (uri?.toString() ?: "-"),
                             phoneNumber,
@@ -72,7 +72,7 @@ class FirebaseRepository {
                             email
                         )
 
-                        userProfileCollection.document(uid).set(mapUserResponseData)
+                        userProfileCollection.document(userUID).set(mapUserResponseData)
                             .addOnSuccessListener {
                                 progressUploadingData.value =
                                     ResponseState.Success(progressDone)
@@ -100,7 +100,7 @@ class FirebaseRepository {
 
     // update user profile data
     fun updateUserProfileData(
-        uid: String,
+        userUID: String,
         name: String,
         address: String,
         email: String
@@ -108,7 +108,7 @@ class FirebaseRepository {
         val progressUploadingData: MutableLiveData<ResponseState<Double>> = MutableLiveData()
         val progressDone = 100.0
         val mapUserProfileData = mapOf(
-            "uid" to uid,
+            "uid" to userUID,
             "name" to name,
             "address" to address,
             "email" to email
@@ -117,7 +117,7 @@ class FirebaseRepository {
         // Loading State
         progressUploadingData.value = ResponseState.Loading(0.0)
 
-        userProfileCollection.document(uid)
+        userProfileCollection.document(userUID)
             .update(mapUserProfileData)
             .addOnSuccessListener {
                 progressUploadingData.value = ResponseState.Success(progressDone)
