@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import c.m.koskosanadmin.R
 import c.m.koskosanadmin.databinding.ActivityDetailLocationBinding
+import c.m.koskosanadmin.ui.form.update.location.UpdateLocationActivity
 import c.m.koskosanadmin.util.Constants.TYPE_OF_MAN
 import c.m.koskosanadmin.util.Constants.TYPE_OF_MIX
 import c.m.koskosanadmin.util.Constants.TYPE_OF_OTHER
@@ -36,6 +37,7 @@ class DetailLocationActivity : AppCompatActivity() {
     private lateinit var layout: View
     private var uid: String? = ""
     private lateinit var shareIntent: Intent
+    private lateinit var updateLocationActivityIntent: Intent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -100,6 +102,14 @@ class DetailLocationActivity : AppCompatActivity() {
                                     TYPE_OF_OTHER -> getString(R.string.call_admin_contact)
                                     else -> getString(R.string.call_admin_contact)
                                 }
+
+                            // need uid of location to access update location page
+                            updateLocationActivityIntent = Intent(
+                                this@DetailLocationActivity,
+                                UpdateLocationActivity::class.java
+                            ).apply {
+                                putExtra(UID, data.uid)
+                            }
 
                             // data for shared item
                             shareIntent = Intent().apply {
@@ -205,6 +215,7 @@ class DetailLocationActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.edit_location -> {
+                startActivity(updateLocationActivityIntent)
                 true
             }
             R.id.share -> {
