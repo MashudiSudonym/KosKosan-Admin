@@ -79,4 +79,8 @@
     <string name="change_order_status">Ubah Status Order</string>
     <string name="mix">Campur</string>
     <string name="edit_location">Ubah Lokasi</string>
+    <string name="google_place_url">Google Place URL</string>
+    <string name="other">Lainnya</string>
+    <string name="location_coordinate">Titik Lokasi</string>
+    <string name="add_new_location">Tambah Lokasi Baru</string>
 </resources>

@@ -2,6 +2,7 @@ package c.m.koskosanadmin.di
 
 import c.m.koskosanadmin.data.repository.AuthRepository
 import c.m.koskosanadmin.data.repository.FirebaseRepository
+import c.m.koskosanadmin.ui.form.add.location.AddLocationViewModel
 import c.m.koskosanadmin.ui.form.add.user.profile.AddUserProfileViewModel
 import c.m.koskosanadmin.ui.form.update.user.profile.UpdateUserProfileViewModel
 import c.m.koskosanadmin.ui.location.detail.DetailLocationViewModel
@@ -25,6 +26,7 @@ val viewModelModule: Module = module {
     viewModel { DetailTransactionViewModel(get()) }
     viewModel { UpdateUserProfileViewModel(get(), get()) }
     viewModel { DetailLocationViewModel(get()) }
+    viewModel { AddLocationViewModel(get(), get()) }
 }
 
 val repositoryModule: Module = module {

@@ -9,6 +9,7 @@ import c.m.koskosanadmin.data.model.UserResponse
 import c.m.koskosanadmin.vo.ResponseState
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -183,7 +184,62 @@ class FirebaseRepository {
         return locations
     }
 
-    // TODO: create location
+    // post new location data to firestore and location photo to storage
+    fun createNewLocationData(
+        locationName: String,
+        locationAddress: String,
+        locationGooglePlace: String,
+        locationOwnerUID: String,
+        locationPhone: String,
+        locationType: String,
+        locationPhoto: Uri?,
+        locationCoordinate: GeoPoint?
+    ): LiveData<ResponseState<Double>> {
+        val progressUploadingData: MutableLiveData<ResponseState<Double>> = MutableLiveData()
+        val locationUID: String = locationCollection.document().id
+        val imageReference: StorageReference = userProfileStorageReference.child("$locationOwnerUID/$locationUID/data")
+        val progressDone = 100.0
+
+        if (locationPhoto != null) {
+            imageReference.putFile(locationPhoto)
+                .addOnSuccessListener {
+                    it.storage.downloadUrl.addOnSuccessListener { uri ->
+                        val listOfUri: List<String> = listOf((uri?.toString() ?: "-"))
+                        val mapLocationResponseData = LocationResponse(
+                            locationUID,
+                            locationName,
+                            locationAddress,
+                            locationPhone,
+                            locationCoordinate,
+                            listOfUri,
+                            locationType,
+                            locationGooglePlace,
+                            locationOwnerUID,
+                        )
+
+                        locationCollection.document(locationUID).set(mapLocationResponseData)
+                            .addOnSuccessListener {
+                                progressUploadingData.value =
+                                    ResponseState.Success(progressDone)
+                            }
+                            .addOnFailureListener { exception ->
+                                progressUploadingData.value =
+                                    ResponseState.Error(exception.localizedMessage, null)
+                            }
+                    }
+                }
+                .addOnFailureListener {
+                    progressUploadingData.value = ResponseState.Error("upload image failed", null)
+                }
+                .addOnProgressListener { snapshot ->
+                    val progressCount: Double =
+                        100.0 * snapshot.bytesTransferred / snapshot.totalByteCount
+                    progressUploadingData.value = ResponseState.Loading(ceil(progressCount))
+                }
+        }
+
+        return progressUploadingData
+    }
 
     // get location detail by location uid
     fun readLocationDetailByLocationUid(locationUID: String): LiveData<ResponseState<LocationResponse>> {

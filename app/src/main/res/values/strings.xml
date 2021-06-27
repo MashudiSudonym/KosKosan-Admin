@@ -80,4 +80,8 @@
     <string name="change_order_status">Change Order Status</string>
     <string name="mix">Mix</string>
     <string name="edit_location">Edit Location</string>
+    <string name="google_place_url">Google Place URL</string>
+    <string name="other">Other</string>
+    <string name="location_coordinate">Location Coordinate</string>
+    <string name="add_new_location">Add New Location</string>
 </resources>
