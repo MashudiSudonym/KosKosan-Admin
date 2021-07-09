@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import c.m.koskosanadmin.R
 import c.m.koskosanadmin.databinding.FragmentLocationBinding
+import c.m.koskosanadmin.ui.form.add.location.AddLocationActivity
 import c.m.koskosanadmin.ui.location.detail.DetailLocationActivity
 import c.m.koskosanadmin.util.Constants.UID
 import c.m.koskosanadmin.util.ViewUtilities.gone
@@ -22,8 +23,7 @@ class LocationFragment : Fragment() {
 
     private val locationViewModel: LocationViewModel by viewModel()
     private var _binding: FragmentLocationBinding? = null
-    private val binding get() = _binding!!
-    private lateinit var layout: View
+    private val binding get() = _binding as FragmentLocationBinding
     private lateinit var locationAdapter: LocationAdapter
 
     override fun onCreateView(
@@ -37,9 +37,6 @@ class LocationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        // for handle view widget utilities
-        layout = view
 
         // app bar setup
         (activity as AppCompatActivity?)?.setSupportActionBar(binding.toolbarLocation)
@@ -68,7 +65,9 @@ class LocationFragment : Fragment() {
 
         // fab button function
         binding.fabAddNewLocation.setOnClickListener {
-            layout.snackBarBasicShort(getString(R.string.title_location))
+            val addLocationActivityIntent = Intent(requireActivity(), AddLocationActivity::class.java)
+
+            startActivity(addLocationActivityIntent)
         }
     }
 
