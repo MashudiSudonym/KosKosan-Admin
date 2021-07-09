@@ -2,12 +2,11 @@ package c.m.koskosanadmin.ui.location.detail
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import c.m.koskosanadmin.R
 import c.m.koskosanadmin.databinding.ActivityDetailLocationBinding
 import c.m.koskosanadmin.ui.form.update.location.UpdateLocationActivity
@@ -34,7 +33,6 @@ class DetailLocationActivity : AppCompatActivity() {
 
     private val detailLocationViewModel: DetailLocationViewModel by viewModel()
     private lateinit var detailLocationBinding: ActivityDetailLocationBinding
-    private lateinit var layout: View
     private var uid: String? = ""
     private lateinit var shareIntent: Intent
     private lateinit var updateLocationActivityIntent: Intent
@@ -45,9 +43,6 @@ class DetailLocationActivity : AppCompatActivity() {
         // initialize view binding
         detailLocationBinding = ActivityDetailLocationBinding.inflate(layoutInflater)
         setContentView(detailLocationBinding.root)
-
-        // for handle view widget utilities
-        layout = detailLocationBinding.root
 
         // maps initialize
         detailLocationBinding.mapLocation.onCreate(savedInstanceState)
