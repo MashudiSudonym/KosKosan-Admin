@@ -178,7 +178,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/man"
-                    android:textColor="@android:color/black"
                     tools:text="@string/man" />
 
                 <RadioButton
@@ -186,7 +185,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/woman"
-                    android:textColor="@android:color/black"
                     tools:text="@string/woman" />
 
                 <RadioButton
@@ -194,7 +192,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/mix"
-                    android:textColor="@android:color/black"
                     tools:text="@string/mix" />
 
                 <RadioButton
@@ -202,7 +199,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/other"
-                    android:textColor="@android:color/black"
                     tools:text="@string/other" />
             </RadioGroup>
 
