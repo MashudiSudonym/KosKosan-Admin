@@ -30,7 +30,7 @@
     <string name="alert_photo_null">Foto profilmu masih kosong</string>
     <string name="title_profile">Profil</string>
     <string name="data_error_null">Ada yang salah!!, ini null</string>
-    <string name="image_requirement_size_description">Kami sangat menyarankan menggunakan gambar yang diambil dari galeri dan berukuran kurang dari 6 Mb.</string>
+    <string name="image_requirement_size_description">Kami sangat menyarankan menggunakan gambar yang diambil dari galeri dan berukuran kurang dari 1 MB.</string>
     <string name="about">Tentang aplikasi ini</string>
     <string name="about_description">KosKosan merupakan aplikasi untuk membantu mencari lokasi kos terdekat dari titik lokasi anda.</string>
     <string name="edit_profile">Edit Profil</string>
@@ -83,4 +83,7 @@
     <string name="other">Lainnya</string>
     <string name="location_coordinate">Titik Lokasi</string>
     <string name="add_new_location">Tambah Lokasi Baru</string>
+    <string name="alert_cancel_add_new_location">Batal menambah lokasi baru ?</string>
+    <string name="alert_location_mark_null">Pilih penanda lokasi pada peta</string>
+    <string name="alert_type_of_location_null">Pilih tipe lokasi</string>
 </resources>

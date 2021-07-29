@@ -17,7 +17,9 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 import timber.log.Timber
+import java.util.*
 import kotlin.math.ceil
+import kotlin.random.Random
 
 class FirebaseRepository {
     // Firebase Storage instance
@@ -197,7 +199,8 @@ class FirebaseRepository {
     ): LiveData<ResponseState<Double>> {
         val progressUploadingData: MutableLiveData<ResponseState<Double>> = MutableLiveData()
         val locationUID: String = locationCollection.document().id
-        val imageReference: StorageReference = userProfileStorageReference.child("$locationOwnerUID/$locationUID/data")
+        val randomUUID: UUID = UUID.randomUUID()
+        val imageReference: StorageReference = userProfileStorageReference.child("$locationOwnerUID/location/data$locationOwnerUID-$randomUUID")
         val progressDone = 100.0
 
         if (locationPhoto != null) {

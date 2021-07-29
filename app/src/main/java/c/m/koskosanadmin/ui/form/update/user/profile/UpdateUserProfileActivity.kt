@@ -27,6 +27,7 @@ import c.m.koskosanadmin.util.ViewUtilities.gone
 import c.m.koskosanadmin.util.ViewUtilities.hideKeyboard
 import c.m.koskosanadmin.util.ViewUtilities.invisible
 import c.m.koskosanadmin.util.ViewUtilities.loadImageWithCoil
+import c.m.koskosanadmin.util.ViewUtilities.openGallery
 import c.m.koskosanadmin.util.ViewUtilities.snackBarBasicIndefinite
 import c.m.koskosanadmin.util.ViewUtilities.snackBarBasicIndefiniteAction
 import c.m.koskosanadmin.util.ViewUtilities.snackBarBasicShort
@@ -451,7 +452,7 @@ class UpdateUserProfileActivity : AppCompatActivity() {
     // Open Gallery Image
     private fun showGallery() {
         if (checkSelfPermissionCompat(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            startGallery()
+            openGallery(packageManager, takePictureGalleryLauncher)
         } else {
             requestReadStoragePermission()
         }
@@ -481,23 +482,9 @@ class UpdateUserProfileActivity : AppCompatActivity() {
         }
     }
 
-    // Logic for Open Gallery
-    @SuppressLint("QueryPermissionsNeeded")
-    private fun startGallery() {
-        Intent(
-            Intent.ACTION_PICK,
-            MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-        ).also { pickPictureIntent ->
-            pickPictureIntent.type = "image/*"
-            pickPictureIntent.resolveActivity(packageManager).also {
-                takePictureGalleryLauncher.launch(pickPictureIntent)
-            }
-        }
-    }
-
     // handling back button for give a warning before back to last activity
     override fun onBackPressed() {
-        var shouldAllowBack = false
+        val shouldAllowBack = false
 
         if (shouldAllowBack) {
             super.onBackPressed()

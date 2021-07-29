@@ -14,7 +14,6 @@ import c.m.koskosanadmin.ui.location.detail.DetailLocationActivity
 import c.m.koskosanadmin.util.Constants.UID
 import c.m.koskosanadmin.util.ViewUtilities.gone
 import c.m.koskosanadmin.util.ViewUtilities.invisible
-import c.m.koskosanadmin.util.ViewUtilities.snackBarBasicShort
 import c.m.koskosanadmin.util.ViewUtilities.visible
 import c.m.koskosanadmin.vo.ResponseState
 import org.koin.androidx.viewmodel.ext.android.viewModel

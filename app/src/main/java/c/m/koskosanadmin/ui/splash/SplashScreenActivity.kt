@@ -3,9 +3,14 @@ package c.m.koskosanadmin.ui.splash
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import c.m.koskosanadmin.BuildConfig
 import c.m.koskosanadmin.databinding.ActivitySplashScreenBinding
 import c.m.koskosanadmin.ui.login.LoginActivity
 import c.m.koskosanadmin.ui.main.MainActivity
+import com.google.firebase.FirebaseApp
+import com.google.firebase.appcheck.FirebaseAppCheck
+import com.google.firebase.appcheck.debug.DebugAppCheckProviderFactory
+import com.google.firebase.appcheck.safetynet.SafetyNetAppCheckProviderFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -22,6 +27,22 @@ class SplashScreenActivity : AppCompatActivity() {
         // viewBinding initialize
         splashScreenBinding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setContentView(splashScreenBinding.root)
+
+        // Firebase App Check
+        FirebaseApp.initializeApp(this)
+        val firebaseAppCheck = FirebaseAppCheck.getInstance()
+
+        // check build config version
+        // is build config is DEBUG, use Firebase AppCheck Debug provider
+        if (BuildConfig.DEBUG) {
+            firebaseAppCheck.installAppCheckProviderFactory(
+                DebugAppCheckProviderFactory.getInstance()
+            )
+        } else {
+            firebaseAppCheck.installAppCheckProviderFactory(
+                SafetyNetAppCheckProviderFactory.getInstance()
+            )
+        }
 
         // observe return value of the data
         splashScreenViewModel.isUserAuthenticated().observe(this, { isUserAuth ->

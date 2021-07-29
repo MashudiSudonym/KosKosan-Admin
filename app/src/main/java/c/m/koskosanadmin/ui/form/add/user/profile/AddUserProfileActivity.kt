@@ -25,6 +25,7 @@ import c.m.koskosanadmin.util.Constants.PERMISSION_REQUEST_READ_EXTERNAL_STORAGE
 import c.m.koskosanadmin.util.ViewUtilities.gone
 import c.m.koskosanadmin.util.ViewUtilities.hideKeyboard
 import c.m.koskosanadmin.util.ViewUtilities.invisible
+import c.m.koskosanadmin.util.ViewUtilities.openGallery
 import c.m.koskosanadmin.util.ViewUtilities.snackBarBasicIndefinite
 import c.m.koskosanadmin.util.ViewUtilities.snackBarBasicIndefiniteAction
 import c.m.koskosanadmin.util.ViewUtilities.snackBarBasicShort
@@ -357,7 +358,7 @@ class AddUserProfileActivity : AppCompatActivity() {
     // Open Gallery Image
     private fun showGallery() {
         if (checkSelfPermissionCompat(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            startGallery()
+            openGallery(packageManager, takePictureGalleryLauncher)
         } else {
             requestReadStoragePermission()
         }
@@ -384,20 +385,6 @@ class AddUserProfileActivity : AppCompatActivity() {
                 arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
                 PERMISSION_REQUEST_READ_EXTERNAL_STORAGE
             )
-        }
-    }
-
-    // Logic for Open Gallery
-    @SuppressLint("QueryPermissionsNeeded")
-    private fun startGallery() {
-        Intent(
-            Intent.ACTION_PICK,
-            MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-        ).also { pickPictureIntent ->
-            pickPictureIntent.type = "image/*"
-            pickPictureIntent.resolveActivity(packageManager).also {
-                takePictureGalleryLauncher.launch(pickPictureIntent)
-            }
         }
     }
 

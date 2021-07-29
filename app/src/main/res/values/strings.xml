@@ -30,7 +30,7 @@
     <string name="alert_photo_null">Your Photo Profile It\'s Blank</string>
     <string name="data_error_null">Something wrong!, it\'s null</string>
     <string name="title_profile">Profile</string>
-    <string name="image_requirement_size_description">We strongly recommend using images taken from the gallery and measuring less than 6 Mb.</string>
+    <string name="image_requirement_size_description">We strongly recommend using images taken from the gallery and measuring less than 1 MB.</string>
     <string name="about">About this app</string>
     <string name="about_description">KosKosan is an application to help find the location of the nearest boarding house from your location point.</string>
     <string name="edit_profile">Edit Profile</string>
@@ -84,4 +84,7 @@
     <string name="other">Other</string>
     <string name="location_coordinate">Location Coordinate</string>
     <string name="add_new_location">Add New Location</string>
+    <string name="alert_cancel_add_new_location">Cancel Add New Location ?</string>
+    <string name="alert_location_mark_null">Select your location mark on map</string>
+    <string name="alert_type_of_location_null">Select type of location</string>
 </resources>

@@ -4,10 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-
-/**
- * AuthRepository Class, this class it's source of authentication data
- */
+import com.google.firebase.auth.PhoneAuthCredential
 
 class AuthRepository {
     // Initialize FirebaseAuth for source of data
